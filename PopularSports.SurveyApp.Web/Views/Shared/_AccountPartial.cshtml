@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    var data = @Context.Request.Cookies.TryGetValue("userName", out string userName);
+    if (userName is not null)
+    {
+        <form asp-action="Logout" asp-controller="Account" method="post" class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav flex-grow-3">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="MapRoleToUser" asp-controller="Account">Role Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="" asp-controller=""> @userName !</a>
+                </li>
+                <li class="nav-item">
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                </li>
+            </ul>
+        </form>
+    }
+    else
+    {
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-action="Register" asp-controller="Account">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-action="Login" asp-controller="Account">Login</a>
+            </li>
+        </ul>
+    }
+}
